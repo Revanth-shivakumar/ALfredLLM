@@ -25,6 +25,20 @@
  .icon-btn{
   @apply text-xl text-slate-300 cursor-pointer hover:text-primary
  }
+
+ .input-label{
+    @apply text-xs text-slate-400
+ }
+
+textarea {
+  overflow: hidden;
+}
+
+/* Hide scrollbars */
+.overflow-hidden {
+  overflow: hidden;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
