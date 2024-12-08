@@ -58,6 +58,8 @@ const Home = () => {
         >
 
         <AddEditNotes
+        type={openAddEditModal.type}
+        notedata={openAddEditModal.data}
         onClose={()=>{
           setOpenAddEditModal({isShown:false,type:"add",data:null})
         }}
