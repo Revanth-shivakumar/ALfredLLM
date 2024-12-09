@@ -1,5 +1,4 @@
 {
-   "connectionString" : "mongodb://revanthks241:test24699@<hostname>/?ssl=true&replicaSet=atlas-g51eoj-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0"
+   "connectionString" :"mongodb+srv://revanthks241:test24699@cluster0.mndex.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 }
-
 
