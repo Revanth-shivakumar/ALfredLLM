@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import NavBar from '../../Components/NavBar/NavBar'
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PasswordInput from '../../Components/Input/PasswordInput';
 import { validateEmail } from '../../utils/helper.js';
 import axiosInstance from '../../utils/axiosInstance.js';
@@ -25,6 +25,7 @@ const navigate=useNavigate()
 
     }
     setError("");
+    // Login API
       try {
         const response=await axiosInstance.post("/login",{
 
