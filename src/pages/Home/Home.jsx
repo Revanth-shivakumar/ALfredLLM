@@ -6,6 +6,7 @@ import { MdAdd } from 'react-icons/md'
 import AddEditNotes from './AddEditNotes'
 import { data, useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
+import moment from 'moment'
 const Home = () => {
 
         const [openAddEditModal,setOpenAddEditModal]=useState({
@@ -15,6 +16,8 @@ const Home = () => {
 
         });
 
+
+        const[allNotes,setAllNotes]=useState([]);
         const[userInfo,setUserInfo]=useState(null);
 
         const navigate =useNavigate();
@@ -36,8 +39,21 @@ const Home = () => {
       };
 
 
+    const getAllNotes = async()  =>{
+      try {
+        const response = await axiosInstance.get("/get-all-notes");
+        if(response.data && response.data.notes){
+          setAllNotes(response.data.notes);
+        }
+      } catch (error) {
+        console.log("Unexpected Error. Please Try Again.");
+      }
+    };
+
+
   useEffect(() => {
-    getUserInfo
+    getAllNotes();
+    getUserInfo();
   
     return () => {
       
@@ -47,13 +63,21 @@ const Home = () => {
   return (
     <>
     <NavBar userInfo={userInfo}/>
+
      <div className='container mx-auto'>
       <div className='grid grid-cols-3 gap-4 mt-8'>
-        <NoteCard title="Meeting on 7th April" date="3rd Apr 2024" content="Meeting on 7th April"
-        tags="#Meeting" isPinned={true}
+
+        {allNotes.map((item,index)=>(
+        <NoteCard title={item.title}
+        key={item._id}
+        date={item.createdOn}
+        content={item_content}
+        tags={item.tags} isPinned={item.isPinned}
         onEdit={()=>{}}
         onDelete={()=>{}}
         onPinNote={()=>{}}/>
+
+))}
 
 
      </div>
@@ -93,6 +117,7 @@ const Home = () => {
         onClose={()=>{
           setOpenAddEditModal({isShown:false,type:"add",data:null})
         }}
+        getAllNotes={getAllNotes}
         
         />
         </Modal>
