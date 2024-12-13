@@ -4,9 +4,8 @@ import ProfileInfo from '../../Components/Cards/ProfileInfo'
 import NoteCard from '../../Components/Cards/NoteCard'
 import { MdAdd } from 'react-icons/md'
 import AddEditNotes from './AddEditNotes'
-import { data, useNavigate } from 'react-router-dom'
+import { data , useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
-import moment from 'moment'
 import Toast from '../../Components/ToastMessage/Toast'
 const Home = () => {
 
@@ -32,7 +31,7 @@ const Home = () => {
         const navigate =useNavigate();
 
         const handleEdit = (noteDetails)=>{
-          setOpenAddEditModal({isShown:true,data:noteDetails,type:"eit"})
+          setOpenAddEditModal({isShown:true,data:noteDetails,type:"edit"})
 
         };
 
