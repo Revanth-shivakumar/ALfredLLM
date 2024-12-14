@@ -64,7 +64,7 @@ Before starting, ensure that you have Node.js, npm, and a MongoDB account set up
     npm run dev
     ```
 
-Once completed, the app will be running at `http://localhost:3000`.
+Once completed, the app will be running at `http://localhost:8000`.
 
 ## How to Use
 
