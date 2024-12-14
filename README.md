@@ -4,6 +4,12 @@
 
 Welcome to the MERN Stack Notes Management App! This application offers a complete solution for managing your notes, built using the MERN stack—MongoDB, Express.js, React, and Node.js. It allows users to easily create, view, update, and delete notes, while providing a responsive design that works seamlessly across both desktop and mobile devices.
 
+
+## Demo 
+
+https://github.com/user-attachments/assets/c2a07197-ce4e-4f00-b0b6-97d636cf8256
+
+
 ## Main Features
 
 - **User Authentication**: Secure user registration and login for personalized access.
