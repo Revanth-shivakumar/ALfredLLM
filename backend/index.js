@@ -16,12 +16,14 @@ const {authenticateToken} =require("./utilities");
 app.use(express.json());
 
 app.use(
-
-   cors({
-    origin:"*",
-   })
-);
-
+    cors({
+      origin: "http://localhost:5173",  // Your React app URL
+      methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],  // Allow methods
+      allowedHeaders: ["Content-Type", "Authorization"],  // Allow specific headers
+      credentials: true,  // Allow credentials (e.g., Authorization header, cookies)
+    })
+  );
+  
 
 app.get("/",(req,res)=>{
     res.json({data:"hello"});

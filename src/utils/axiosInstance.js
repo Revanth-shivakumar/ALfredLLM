@@ -1,12 +1,10 @@
 import axios from "axios";
-import { BASE_URL } from "./constants";
 const axiosInstance = axios.create({
-    baseURL: BASE_URL,
-    timeout: 10000,
+    baseURL: "http://localhost:8000",  // Your API base URL
     headers: {
-        "Content-Type": "application/json"
-    }
-});
+      "Content-Type": "application/json",
+    },  // Include credentials (cookies, authorization headers) with requests
+  });
 
 axiosInstance.interceptors.request.use(
     (config) => {
