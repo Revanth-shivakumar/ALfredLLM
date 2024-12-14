@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import NavBar from '../../Components/NavBar/NavBar'
-import ProfileInfo from '../../Components/Cards/ProfileInfo'
 import NoteCard from '../../Components/Cards/NoteCard'
 import { MdAdd } from 'react-icons/md'
 import AddEditNotes from './AddEditNotes'
-import { data , useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 import Toast from '../../Components/ToastMessage/Toast'
 import axiosInstance from '../../utils/axiosInstance'
@@ -22,7 +21,6 @@ const Home = () => {
           isShown:false,
           message:"",
           type:"add",
-          add: null
 })
 
 
@@ -89,20 +87,24 @@ const Home = () => {
       }
     };
 
+    const deleteNote = async(data)=>{
+
+
+      
+    }
+
 
   useEffect(() => {
 
-    const fetchData= async()=>{
-    await getUserInfo();
-    await getAllNotes();
-    };
-    fetchData();
+    
+     getUserInfo();
+     getAllNotes();
  
   
     return () => {
       
     }
-  },[navigate])
+  },[])
   
   return (
     <>
@@ -162,7 +164,7 @@ const Home = () => {
           setOpenAddEditModal({isShown:false,type:"add",data:null})
         }}
         getAllNotes={getAllNotes}
-        
+        showToastMessage={showToastMessage}
         />
         </Modal>
         <Toast
