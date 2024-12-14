@@ -7,6 +7,7 @@ import AddEditNotes from './AddEditNotes'
 import { data , useNavigate } from 'react-router-dom'
 import Modal from 'react-modal'
 import Toast from '../../Components/ToastMessage/Toast'
+import axiosInstance from '../../utils/axiosInstance'
 const Home = () => {
 
         const [openAddEditModal,setOpenAddEditModal]=useState({
@@ -64,10 +65,15 @@ const Home = () => {
                 setUserInfo(response.data.user);
             }
         } catch (error) {
+        if(error.response){
             if (error.response && error.response.status === 401) {
                 localStorage.clear();
                 navigate("/login");
+            }else{
+              console.error("Error fetching user data: ", error.response.data);
             }
+        }else{
+          console.error("Unexpected Error",error);
         }
       };
 
@@ -85,13 +91,18 @@ const Home = () => {
 
 
   useEffect(() => {
-    getAllNotes();
-    getUserInfo();
+
+    const fetchData= async()=>{
+    await getUserInfo();
+    await getAllNotes();
+    };
+    fetchData();
+ 
   
     return () => {
       
     }
-  },)
+  },[navigate])
   
   return (
     <>
@@ -104,7 +115,7 @@ const Home = () => {
         <NoteCard title={item.title}
         key={item._id}
         date={item.createdOn}
-        content={item_content}
+        content={item.content}
         tags={item.tags} isPinned={item.isPinned}
         onEdit={()=>handleEdit(item)}
         onDelete={()=>{}}
@@ -163,5 +174,5 @@ const Home = () => {
     </>
   )
 }
-
+}
 export default Home

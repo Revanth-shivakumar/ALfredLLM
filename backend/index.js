@@ -17,7 +17,7 @@ app.use(express.json());
 
 app.use(
     cors({
-      origin: "http://localhost:5173",  // Your React app URL
+      origin: "*",  // Your React app URL
       methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],  // Allow methods
       allowedHeaders: ["Content-Type", "Authorization"],  // Allow specific headers
       credentials: true,  // Allow credentials (e.g., Authorization header, cookies)
@@ -209,7 +209,7 @@ app.put("/edit-note/:noteId", authenticateToken, async (req, res) => {
 
 }); 
 
-app.get("/get-all-notes/", authenticateToken, async (req, res) => {
+app.get("/get-all-notes", authenticateToken, async (req, res) => {
  const {user} = req.user;
 
  try{
