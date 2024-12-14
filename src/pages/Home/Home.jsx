@@ -88,9 +88,51 @@ const Home = () => {
     };
 
     const deleteNote = async(data)=>{
+      const noteId=data._id
+      try {
+      const response=await axiosInstance.put("./delete-note/"+ noteId,{
+        title,
+        content,
+        tags,
+      });
 
 
-      
+      if(response.data && !response.data.error){
+        showToastMessage("Note Deleted Successfully")
+        getAllNotes()
+        OnClose()
+      }
+    } catch (error) {
+       if(
+          error.response&&
+          error.response.data&&
+          error.response.data.message
+        ){
+          console.log("Unexpected Error. Please Try Again.")
+        }
+    }
+  };
+  const handleAddNote=()=>{
+    if(!title){
+      setError("Enter the Title");
+      return;
+    }
+
+    if(!content){
+      setError("Enter the Title");
+      return;
+    }
+
+     setError("");
+
+     if(type==='edit'){
+      editNote()
+     }else{
+      addNewNote()
+     }
+ 
+
+
     }
 
 
@@ -112,7 +154,7 @@ const Home = () => {
 
      <div className='container mx-auto'>
       <div className='grid grid-cols-3 gap-4 mt-8'>
-
+      
         {allNotes.map((item,index)=>(
         <NoteCard title={item.title}
         key={item._id}
@@ -120,7 +162,7 @@ const Home = () => {
         content={item.content}
         tags={item.tags} isPinned={item.isPinned}
         onEdit={()=>handleEdit(item)}
-        onDelete={()=>{}}
+        onDelete={()=>deleteNote(item)}
         onPinNote={()=>{}}/>
 
 ))}
